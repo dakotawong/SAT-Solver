@@ -33,7 +33,7 @@ The order of operations will be enforeced as follows with `1` being the higest o
 
 ### Context Free Grammar (CFG):
 
-<img title="SolverDiagram" src="./imgs/grammar.png">
+<img title="SolverDiagram" src="./imgs/grammar.PNG">
 
 Note that blue represents variables while red represents terminals.
 
