@@ -11,12 +11,55 @@ This Boolean SAT Solver can be used to determine satisfiability of boolean formu
 <img title="SolverDiagram" src="./imgs/solver.png">
 
 ## Grammar
+Below outlines the grammar used by the SAT Solver.
 
+### Operators:
+1. `*`: represents the boolean AND operator
+2. `+`: represents the boolean OR operator
+3. `-`: represents the boolean NOT operator
+
+### Order of Operations:
+The order of operations will be enforeced as follows with `1` being the higest order and `4` being the lowest order.
+1. `(` or `)` (Paranthesis)
+2. `-` (NOT)
+3. `*` (AND)
+4. `+` (OR)
+
+### Rules:
+1. Variable names must start with a character of the alphabet (uppercase or lowercase)
+2. Variable names can consist of letters and digits
+3. Variable length must be less than 11 characters
+4. Can use arbitrary amounts of whitespace between terms of the grammar
+
+### Context Free Grammar (CFG):
+
+<img title="SolverDiagram" src="./imgs/grammar.png">
+
+Note that blue represents variables while red represents terminals.
+
+### Examples:
+Here are some examples of the grammar:
+```
+a+c
+a*---a
+ ( (-a)+(a*b)) * a * (c + -b) *-c
+(a+b+c)*(a+b+-c)*(-b+a +c)*(-a*-c)
+(a+b+c)*(a+b+-c)*(-b+a +c)*(a+-b+-c)*(-a+b+c)*(-a+b+-c)*(-a+-b+c)*(-a+-c+-c)
+(a+b+c)*(a+b+-c)*(-b+a +c)*(a+-b+-c)*(-a+b+c)*(-a+b+-c)*(-a+-b+c)*(-a+-c+-b)
+(a+b+c)*(a+b+-c)*(-b+a +c)*(a+-b+-c)*(-a+b+c)*(-a+b+-c)*(-a+-b+c)
+VAr1 * -VAr1
+VAr1 + -VAr1
+ -((A*  B)+ C)
+ (A+-B+C) * (B+C) * (-A+ C) * (B +-C) * -               (C)
+(a1)*(-a1+a2) * (-a2+a3) *(-a3)
+  (-B*-C * D) + (-B * -  D) + (C *D) + (B)         
+(B+C+-D)  *(D+B)*(-C+-D)* (-B)
+```
 
 ## Compiling/Running the Program
 The SAT Solver can be easily compiled/run on most versions of Linux (Ubuntu, POP!_OS, etc.). All that needs to be done to compile the SAT Solver is a `make`, and then it can be run using `./sat`.
 
-The process of compiling and running the SAT Solver with a few examples looks something like this:
+The process of compiling and running the SAT Solver with a few examples from the root directory should look like this:
 ```
 sh-5.1$ make
 g++ -std=c++14 -g -Wall -MMD -Werror=vla   -c -o main.o main.cc
